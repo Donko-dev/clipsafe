@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ClipSafe — Centre de contrôle</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  body { padding-bottom: 4rem; }
+  #cs-admin-root { max-width: 760px; margin: 0 auto; padding: 0 1.1rem; }
+
+  /* ---- Login ---- */
+  #login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #login-screen h1 { font-family: var(--cs-font-display); font-size: 1.4rem; }
+  #login-box {
+    background: var(--cs-surface);
+    border: 1px solid var(--cs-border);
+    border-radius: var(--cs-radius);
+    padding: 1.4rem;
+    width: 100%;
+    max-width: 320px;
+  }
+  #login-input {
+    width: 100%;
+    background: var(--cs-surface2);
+    border: 1px solid var(--cs-border);
+    border-radius: 10px;
+    color: var(--cs-text);
+    padding: 0.7rem;
+    margin-bottom: 0.7rem;
+    font-family: var(--cs-font-mono);
+  }
+  #login-error { color: var(--cs-danger); font-size: 0.85rem; min-height: 1.2em; margin-top: 0.5rem; }
+
+  /* ---- Panel ---- */
+  .cs-admin-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.3rem 0 0.8rem; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .cs-admin-header h1 { font-family: var(--cs-font-display); font-size: 1.25rem; margin: 0; }
+  .cs-admin-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .cs-tabs { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.8rem; margin-bottom: 1rem; border-bottom: 1px solid var(--cs-border); }
+  .cs-tab {
+    background: transparent; border: 1px solid var(--cs-border); color: var(--cs-textMuted);
+    border-radius: 999px; padding: 0.45rem 0.9rem; font-size: 0.82rem; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .cs-tab.active { background: var(--cs-accent); color: #06231a; border-color: var(--cs-accent); }
+
+  .cs-panel { display: none; }
+  .cs-panel.active { display: block; }
+
+  .cs-field { margin-bottom: 0.9rem; }
+  .cs-field label { display: block; font-size: 0.8rem; color: var(--cs-textMuted); margin-bottom: 0.3rem; }
+  .cs-field input[type="text"],
+  .cs-field input[type="url"],
+  .cs-field input[type="number"],
+  .cs-field textarea,
+  .cs-field select {
+    width: 100%; background: var(--cs-surface2); border: 1px solid var(--cs-border);
+    border-radius: 10px; color: var(--cs-text); padding: 0.6rem; font-family: var(--cs-font-body); font-size: 0.9rem;
+  }
+  .cs-field textarea { font-family: var(--cs-font-mono); font-size: 0.8rem; min-height: 80px; }
+  .cs-field input[type="color"] { width: 100%; height: 42px; border: 1px solid var(--cs-border); border-radius: 10px; background: var(--cs-surface2); padding: 4px; }
+  .cs-row { display: flex; gap: 0.7rem; }
+  .cs-row > * { flex: 1; }
+  .cs-check { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.9rem; }
+
+  .cs-item-card {
+    background: var(--cs-surface); border: 1px solid var(--cs-border); border-radius: 14px;
+    padding: 0.9rem; margin-bottom: 0.8rem;
+  }
+  .cs-item-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .cs-item-card-head strong { font-size: 0.85rem; }
+  .cs-mini-btns { display: flex; gap: 0.3rem; }
+  .cs-mini-btn {
+    background: var(--cs-surface2); border: 1px solid var(--cs-border); color: var(--cs-text);
+    border-radius: 8px; padding: 0.25rem 0.5rem; font-size: 0.75rem; cursor: pointer;
+  }
+  .cs-mini-btn.danger { color: var(--cs-danger); }
+  .cs-add-btn {
+    width: 100%; background: transparent; border: 1px dashed var(--cs-border); color: var(--cs-textMuted);
+    border-radius: 12px; padding: 0.7rem; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+  }
+  .cs-add-btn:hover { border-color: var(--cs-accent); color: var(--cs-accent); }
+
+  .cs-save-bar {
+    position: sticky; bottom: 0; background: var(--cs-bg); border-top: 1px solid var(--cs-border);
+    padding: 0.9rem 0; margin-top: 1.5rem; display: flex; gap: 0.6rem; flex-wrap: wrap;
+  }
+  #import-file { display: none; }
+  .cs-hint { color: var(--cs-textMuted); font-size: 0.78rem; margin: -0.4rem 0 0.9rem; }
+  .cs-status { font-size: 0.82rem; color: var(--cs-accent); margin-left: 0.4rem; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     ÉCRAN DE CONNEXION
+     ========================================================= -->
+<div id="login-screen">
+  <h1>🔒 ClipSafe — Centre de contrôle</h1>
+  <div id="login-box">
+    <input id="login-input" type="password" placeholder="Mot de passe administrateur" autocomplete="off" />
+    <button id="login-btn" class="cs-btn cs-btn--primary" style="width:100%;" type="button">Se connecter</button>
+    <div id="login-error"></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     PANNEAU D'ADMINISTRATION
+     ========================================================= -->
+<div id="cs-admin-root" hidden>
+  <div class="cs-admin-header">
+    <h1>Centre de contrôle ClipSafe</h1>
+    <div class="cs-admin-actions">
+      <button class="cs-btn cs-btn--ghost" id="import-btn" type="button">Importer un data.json</button>
+      <input type="file" id="import-file" accept="application/json" />
+      <button class="cs-btn cs-btn--primary" id="export-btn" type="button">Télécharger data.json</button>
+    </div>
+  </div>
+
+  <nav class="cs-tabs">
+    <button class="cs-tab active" data-tab="general">Général</button>
+    <button class="cs-tab" data-tab="theme">Thème</button>
+    <button class="cs-tab" data-tab="sections">Sections</button>
+    <button class="cs-tab" data-tab="categories">Catégories</button>
+    <button class="cs-tab" data-tab="premium">Premium</button>
+    <button class="cs-tab" data-tab="footer">Pied de page</button>
+    <button class="cs-tab" data-tab="branding">Logos</button>
+  </nav>
+
+  <!-- Général -->
+  <div class="cs-panel active" data-panel="general">
+    <div class="cs-field"><label>Nom de l'application</label><input type="text" id="f-app-name" /></div>
+    <div class="cs-field"><label>Slogan (tagline)</label><input type="text" id="f-app-tagline" /></div>
+  </div>
+
+  <!-- Thème -->
+  <div class="cs-panel" data-panel="theme">
+    <p class="cs-hint">Couleurs globales, appliquées instantanément à toute l'application publique. Les visiteurs peuvent basculer entre les deux palettes via le bouton ☀️/🌙 en haut de l'app.</p>
+    <div class="cs-field">
+      <label>Thème affiché par défaut à la première visite</label>
+      <select id="f-default-mode">
+        <option value="dark">Sombre</option>
+        <option value="light">Clair</option>
+      </select>
+    </div>
+    <div class="cs-tabs" style="border-bottom:none; margin-bottom:0.6rem;">
+      <button class="cs-tab active" data-mode-tab="dark" type="button">Palette sombre</button>
+      <button class="cs-tab" data-mode-tab="light" type="button">Palette claire</button>
+    </div>
+    <div id="theme-colors"></div>
+    <div class="cs-field"><label>Police des titres (display)</label><input type="text" id="f-font-display" /></div>
+    <div class="cs-field"><label>Police du texte (body)</label><input type="text" id="f-font-body" /></div>
+    <div class="cs-field"><label>Police des étiquettes (mono)</label><input type="text" id="f-font-mono" /></div>
+    <div class="cs-field"><label>Arrondi des cartes (radius)</label><input type="text" id="f-radius" /></div>
+  </div>
+
+  <!-- Sections -->
+  <div class="cs-panel" data-panel="sections">
+    <p class="cs-hint">Activez, réorganisez ou modifiez chaque bloc de la page publique.</p>
+    <div id="sections-list"></div>
+    <button class="cs-add-btn" id="add-section-btn" type="button">+ Ajouter une section</button>
+  </div>
+
+  <!-- Catégories -->
+  <div class="cs-panel" data-panel="categories">
+    <p class="cs-hint">Catégories utilisées pour le tri automatique du presse-papiers.</p>
+    <div id="categories-list"></div>
+  </div>
+
+  <!-- Premium -->
+  <div class="cs-panel" data-panel="premium">
+    <div class="cs-check"><input type="checkbox" id="f-premium-enabled" /><label for="f-premium-enabled" style="margin:0;">Activer le bloc Premium / Kikiapay</label></div>
+    <div class="cs-row">
+      <div class="cs-field"><label>Prix (FCFA)</label><input type="number" id="f-premium-fcfa" /></div>
+      <div class="cs-field"><label>Prix (USD)</label><input type="number" step="0.01" id="f-premium-usd" /></div>
+      <div class="cs-field"><label>Prix (EUR)</label><input type="number" step="0.01" id="f-premium-eur" /></div>
+    </div>
+    <p class="cs-hint">Le FCFA (XOF) est la référence ; USD/EUR sont des équivalences approximatives à ajuster manuellement selon le taux du jour.</p>
+    <div class="cs-field"><label>Libellé de la licence</label><input type="text" id="f-premium-label" /></div>
+    <div class="cs-field"><label>Lien de paiement Kikiapay</label><input type="url" id="f-premium-link" /></div>
+    <div class="cs-field"><label>Fonctionnalités (une par ligne)</label><textarea id="f-premium-features"></textarea></div>
+  </div>
+
+  <!-- Pied de page -->
+  <div class="cs-panel" data-panel="footer">
+    <div class="cs-field"><label>Texte du pied de page</label><input type="text" id="f-footer-text" /></div>
+    <div id="footer-buttons-list"></div>
+  </div>
+
+  <!-- Branding -->
+  <div class="cs-panel" data-panel="branding">
+    <div class="cs-field"><label>Logo (code SVG)</label><textarea id="f-logo-svg"></textarea></div>
+    <div class="cs-field"><label>Favicon (code SVG)</label><textarea id="f-favicon-svg"></textarea></div>
+    <p class="cs-hint">Les icônes PNG (192/512 px) utilisées par le manifest PWA se modifient en remplaçant les fichiers dans /icons sur GitHub ; seuls les SVG de la page (logo, favicon) sont pilotés ici.</p>
+  </div>
+
+  <div class="cs-save-bar">
+    <button class="cs-btn cs-btn--primary" id="export-btn-2" type="button">Télécharger data.json mis à jour</button>
+    <span class="cs-status" id="save-status"></span>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* -------------------------------------------------------------------------
+   Authentification
+   Le mot de passe n'est jamais stocké en clair : seul son empreinte SHA-256
+   figure dans ce fichier. Rappel honnête : une page statique livrée au
+   navigateur ne peut pas garder un secret absolu face à quelqu'un qui lit
+   le code source ; ce verrou empêche l'accès accidentel ou occasionnel,
+   pas une inspection délibérée et compétente du fichier.
+   ------------------------------------------------------------------------- */
+const ADMIN_PASSWORD_HASH = "391a9dc924d6b2a6fde451b85559d328ad52c8f4013f02d94d48e64d7a460e1a";
+
+async function sha256Hex(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+document.getElementById("login-btn").addEventListener("click", tryLogin);
+document.getElementById("login-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") tryLogin();
+});
+
+async function tryLogin() {
+  const input = document.getElementById("login-input");
+  const hash = await sha256Hex(input.value);
+  if (hash === ADMIN_PASSWORD_HASH) {
+    document.getElementById("login-screen").remove();
+    document.getElementById("cs-admin-root").hidden = false;
+    initAdmin();
+  } else {
+    document.getElementById("login-error").textContent = "Mot de passe incorrect.";
+    input.value = "";
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Sanitisation
+   ------------------------------------------------------------------------- */
+function escapeAttr(str) {
+  return String(str ?? "").replace(/"/g, "&quot;");
+}
+function sanitizeUrl(url) {
+  const trimmed = String(url ?? "").trim();
+  if (/^(https?:|mailto:|tel:)/i.test(trimmed) || trimmed.startsWith("./") || trimmed.startsWith("/")) {
+    return trimmed;
+  }
+  return "#";
+}
+
+/* -------------------------------------------------------------------------
+   État applicatif
+   ------------------------------------------------------------------------- */
+let state = null;
+
+async function initAdmin() {
+  try {
+    const res = await fetch("data.json", { cache: "no-store" });
+    state = await res.json();
+  } catch {
+    state = defaultState();
+  }
+  renderAll();
+  bindTabs();
+  bindStaticActions();
+}
+
+function defaultState() {
+  return {
+    app: { name: "ClipSafe", tagline: "Coffre-fort de presse-papiers intelligent", themeColor: "#0F1419", backgroundColor: "#0F1419" },
+    theme: {
+      defaultMode: "dark",
+      colorModes: {
+        dark: { bg: "#0F1419", surface: "#171D26", surface2: "#1E2530", border: "#2A3240", text: "#E8ECEF", textMuted: "#8A94A6", accent: "#34D399", accentDark: "#1C825C", accent2: "#5B8DEF", premium: "#F0B429", danger: "#EF4444" },
+        light: { bg: "#F5F7F6", surface: "#FFFFFF", surface2: "#EEF2F0", border: "#DCE3E0", text: "#10151A", textMuted: "#5C6670", accent: "#159C6B", accentDark: "#0E7550", accent2: "#3E6FD9", premium: "#B5790A", danger: "#D93025" },
+      },
+      fonts: { display: "'Space Grotesk', sans-serif", body: "'Inter', sans-serif", mono: "'JetBrains Mono', monospace" },
+      radius: "18px",
+    },
+    branding: { logoSvg: "", faviconSvg: "" },
+    premium: { enabled: true, priceFcfa: 700, priceUsd: 1.22, priceEur: 1.07, licenseLabel: "Licence à vie", kikiapayLink: "", features: [] },
+    categories: [],
+    sections: [],
+    footer: { text: "Powered by EMPIRE CODE.", buttons: [] },
+  };
+}
+
+/* -------------------------------------------------------------------------
+   Rendu des panneaux
+   ------------------------------------------------------------------------- */
+function renderAll() {
+  document.getElementById("f-app-name").value = state.app.name;
+  document.getElementById("f-app-tagline").value = state.app.tagline;
+
+  document.getElementById("f-default-mode").value = state.theme.defaultMode || "dark";
+  renderThemeColors();
+  document.getElementById("f-font-display").value = state.theme.fonts.display;
+  document.getElementById("f-font-body").value = state.theme.fonts.body;
+  document.getElementById("f-font-mono").value = state.theme.fonts.mono;
+  document.getElementById("f-radius").value = state.theme.radius;
+
+  renderSections();
+  renderCategories();
+
+  document.getElementById("f-premium-enabled").checked = !!state.premium.enabled;
+  document.getElementById("f-premium-fcfa").value = state.premium.priceFcfa;
+  document.getElementById("f-premium-usd").value = state.premium.priceUsd;
+  document.getElementById("f-premium-eur").value = state.premium.priceEur;
+  document.getElementById("f-premium-label").value = state.premium.licenseLabel;
+  document.getElementById("f-premium-link").value = state.premium.kikiapayLink;
+  document.getElementById("f-premium-features").value = (state.premium.features || []).join("\n");
+
+  document.getElementById("f-footer-text").value = state.footer.text;
+  renderFooterButtons();
+
+  document.getElementById("f-logo-svg").value = state.branding.logoSvg || "";
+  document.getElementById("f-favicon-svg").value = state.branding.faviconSvg || "";
+}
+
+let activeColorMode = "dark";
+
+function renderThemeColors() {
+  const wrap = document.getElementById("theme-colors");
+  const colors = state.theme.colorModes[activeColorMode];
+  wrap.innerHTML = Object.entries(colors)
+    .map(
+      ([key, value]) => `
+      <div class="cs-field">
+        <label>${escapeAttr(key)}</label>
+        <input type="color" data-color-key="${escapeAttr(key)}" value="${escapeAttr(value)}" />
+      </div>`
+    )
+    .join("");
+  wrap.querySelectorAll("input[data-color-key]").forEach((input) => {
+    input.addEventListener("input", (e) => {
+      state.theme.colorModes[activeColorMode][e.target.dataset.colorKey] = e.target.value;
+    });
+  });
+}
+
+document.querySelectorAll("[data-mode-tab]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("[data-mode-tab]").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeColorMode = btn.dataset.modeTab;
+    renderThemeColors();
+  });
+});
+
+document.getElementById("f-default-mode")?.addEventListener("change", (e) => {
+  state.theme.defaultMode = e.target.value;
+});
+
+function renderSections() {
+  const wrap = document.getElementById("sections-list");
+  wrap.innerHTML = state.sections
+    .map(
+      (s, i) => `
+      <div class="cs-item-card" data-index="${i}">
+        <div class="cs-item-card-head">
+          <strong>${escapeAttr(s.type)} — ${escapeAttr(s.id)}</strong>
+          <div class="cs-mini-btns">
+            <button class="cs-mini-btn" data-act="up">↑</button>
+            <button class="cs-mini-btn" data-act="down">↓</button>
+            <button class="cs-mini-btn danger" data-act="remove">Supprimer</button>
+          </div>
+        </div>
+        <div class="cs-check">
+          <input type="checkbox" data-field="enabled" ${s.enabled ? "checked" : ""} />
+          <label style="margin:0;">Section activée</label>
+        </div>
+        <div class="cs-field"><label>Titre</label><input type="text" data-field="title" value="${escapeAttr(s.title)}" /></div>
+        <div class="cs-field"><label>Sous-titre</label><input type="text" data-field="subtitle" value="${escapeAttr(s.subtitle || "")}" /></div>
+        <div class="cs-row">
+          <label class="cs-check"><input type="checkbox" data-field="bold" ${s.style?.bold ? "checked" : ""} /> Gras</label>
+          <label class="cs-check"><input type="checkbox" data-field="italic" ${s.style?.italic ? "checked" : ""} /> Italique</label>
+          <label class="cs-check"><input type="checkbox" data-field="underline" ${s.style?.underline ? "checked" : ""} /> Souligné</label>
+        </div>
+      </div>`
+    )
+    .join("");
+
+  wrap.querySelectorAll(".cs-item-card").forEach((card) => {
+    const idx = Number(card.dataset.index);
+    card.querySelector('[data-act="remove"]').addEventListener("click", () => {
+      state.sections.splice(idx, 1);
+      renderSections();
+    });
+    card.querySelector('[data-act="up"]').addEventListener("click", () => {
+      if (idx === 0) return;
+      [state.sections[idx - 1], state.sections[idx]] = [state.sections[idx], state.sections[idx - 1]];
+      renderSections();
+    });
+    card.querySelector('[data-act="down"]').addEventListener("click", () => {
+      if (idx === state.sections.length - 1) return;
+      [state.sections[idx + 1], state.sections[idx]] = [state.sections[idx], state.sections[idx + 1]];
+      renderSections();
+    });
+    card.querySelector('[data-field="enabled"]').addEventListener("change", (e) => (state.sections[idx].enabled = e.target.checked));
+    card.querySelector('[data-field="title"]').addEventListener("input", (e) => (state.sections[idx].title = e.target.value));
+    card.querySelector('[data-field="subtitle"]').addEventListener("input", (e) => (state.sections[idx].subtitle = e.target.value));
+    card.querySelector('[data-field="bold"]').addEventListener("change", (e) => (state.sections[idx].style.bold = e.target.checked));
+    card.querySelector('[data-field="italic"]').addEventListener("change", (e) => (state.sections[idx].style.italic = e.target.checked));
+    card.querySelector('[data-field="underline"]').addEventListener("change", (e) => (state.sections[idx].style.underline = e.target.checked));
+  });
+}
+
+document.getElementById("add-section-btn")?.addEventListener("click", () => {
+  const id = "section-" + Date.now();
+  state.sections.push({
+    id,
+    type: "custom",
+    enabled: true,
+    title: "Nouvelle section",
+    subtitle: "",
+    style: { bold: false, italic: false, underline: false },
+  });
+  renderSections();
+});
+
+function renderCategories() {
+  const wrap = document.getElementById("categories-list");
+  wrap.innerHTML = state.categories
+    .map(
+      (c, i) => `
+      <div class="cs-item-card" data-index="${i}">
+        <div class="cs-row">
+          <div class="cs-field"><label>Libellé</label><input type="text" data-field="label" value="${escapeAttr(c.label)}" /></div>
+          <div class="cs-field"><label>Couleur</label><input type="color" data-field="color" value="${escapeAttr(c.color)}" /></div>
+        </div>
+      </div>`
+    )
+    .join("");
+  wrap.querySelectorAll(".cs-item-card").forEach((card) => {
+    const idx = Number(card.dataset.index);
+    card.querySelector('[data-field="label"]').addEventListener("input", (e) => (state.categories[idx].label = e.target.value));
+    card.querySelector('[data-field="color"]').addEventListener("input", (e) => (state.categories[idx].color = e.target.value));
+  });
+}
+
+function renderFooterButtons() {
+  const wrap = document.getElementById("footer-buttons-list");
+  wrap.innerHTML = state.footer.buttons
+    .map(
+      (b, i) => `
+      <div class="cs-item-card" data-index="${i}">
+        <div class="cs-item-card-head">
+          <strong>${escapeAttr(b.label)}</strong>
+          <button class="cs-mini-btn danger" data-act="remove">Supprimer</button>
+        </div>
+        <div class="cs-field"><label>Libellé</label><input type="text" data-field="label" value="${escapeAttr(b.label)}" /></div>
+        <div class="cs-field"><label>Lien</label><input type="text" data-field="url" value="${escapeAttr(b.url)}" /></div>
+        <div class="cs-row">
+          <div class="cs-field"><label>Icône</label>
+            <select data-field="icon">
+              ${["whatsapp", "shop", "mail"].map((ic) => `<option value="${ic}" ${b.icon === ic ? "selected" : ""}>${ic}</option>`).join("")}
+            </select>
+          </div>
+          <div class="cs-field"><label>Couleur</label><input type="color" data-field="color" value="${escapeAttr(b.color)}" /></div>
+        </div>
+      </div>`
+    )
+    .join("");
+  wrap.querySelectorAll(".cs-item-card").forEach((card) => {
+    const idx = Number(card.dataset.index);
+    card.querySelector('[data-act="remove"]').addEventListener("click", () => {
+      state.footer.buttons.splice(idx, 1);
+      renderFooterButtons();
+    });
+    card.querySelector('[data-field="label"]').addEventListener("input", (e) => (state.footer.buttons[idx].label = e.target.value));
+    card.querySelector('[data-field="url"]').addEventListener("input", (e) => (state.footer.buttons[idx].url = e.target.value));
+    card.querySelector('[data-field="icon"]').addEventListener("change", (e) => (state.footer.buttons[idx].icon = e.target.value));
+    card.querySelector('[data-field="color"]').addEventListener("input", (e) => (state.footer.buttons[idx].color = e.target.value));
+  });
+}
+
+/* -------------------------------------------------------------------------
+   Onglets
+   ------------------------------------------------------------------------- */
+function bindTabs() {
+  document.querySelectorAll(".cs-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".cs-tab").forEach((t) => t.classList.remove("active"));
+      document.querySelectorAll(".cs-panel").forEach((p) => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.querySelector(`.cs-panel[data-panel="${tab.dataset.tab}"]`).classList.add("active");
+    });
+  });
+}
+
+/* -------------------------------------------------------------------------
+   Collecte des champs simples avant export + import/export fichier
+   ------------------------------------------------------------------------- */
+function collectSimpleFields() {
+  state.app.name = document.getElementById("f-app-name").value;
+  state.app.tagline = document.getElementById("f-app-tagline").value;
+
+  state.theme.fonts.display = document.getElementById("f-font-display").value;
+  state.theme.fonts.body = document.getElementById("f-font-body").value;
+  state.theme.fonts.mono = document.getElementById("f-font-mono").value;
+  state.theme.radius = document.getElementById("f-radius").value;
+
+  state.premium.enabled = document.getElementById("f-premium-enabled").checked;
+  state.premium.priceFcfa = Number(document.getElementById("f-premium-fcfa").value) || 0;
+  state.premium.priceUsd = Number(document.getElementById("f-premium-usd").value) || 0;
+  state.premium.priceEur = Number(document.getElementById("f-premium-eur").value) || 0;
+  state.premium.licenseLabel = document.getElementById("f-premium-label").value;
+  state.premium.kikiapayLink = sanitizeUrl(document.getElementById("f-premium-link").value);
+  state.premium.features = document
+    .getElementById("f-premium-features")
+    .value.split("\n")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  state.footer.text = document.getElementById("f-footer-text").value;
+
+  state.branding.logoSvg = document.getElementById("f-logo-svg").value;
+  state.branding.faviconSvg = document.getElementById("f-favicon-svg").value;
+
+  state.footer.buttons.forEach((b) => (b.url = sanitizeUrl(b.url)));
+}
+
+function bindStaticActions() {
+  document.getElementById("import-btn").addEventListener("click", () => document.getElementById("import-file").click());
+  document.getElementById("import-file").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      state = JSON.parse(text);
+      renderAll();
+      setStatus("Fichier importé.");
+    } catch {
+      setStatus("Fichier JSON invalide.");
+    }
+  });
+
+  document.getElementById("export-btn").addEventListener("click", exportData);
+  document.getElementById("export-btn-2").addEventListener("click", exportData);
+}
+
+function exportData() {
+  collectSimpleFields();
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  setStatus("data.json généré — téléversez-le sur GitHub pour publier les changements.");
+}
+
+function setStatus(msg) {
+  const el = document.getElementById("save-status");
+  el.textContent = msg;
+  setTimeout(() => (el.textContent = ""), 4000);
+}
+</script>
+</body>
+</html>

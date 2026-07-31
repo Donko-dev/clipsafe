@@ -1,0 +1,128 @@
+{
+  "app": {
+    "name": "ClipSafe",
+    "tagline": "Coffre-fort de presse-papiers intelligent",
+    "themeColor": "#0F1419",
+    "backgroundColor": "#0F1419"
+  },
+  "theme": {
+    "defaultMode": "dark",
+    "colorModes": {
+      "dark": {
+        "bg": "#0F1419",
+        "surface": "#171D26",
+        "surface2": "#1E2530",
+        "border": "#2A3240",
+        "text": "#E8ECEF",
+        "textMuted": "#8A94A6",
+        "accent": "#34D399",
+        "accentDark": "#1C825C",
+        "accent2": "#5B8DEF",
+        "premium": "#F0B429",
+        "danger": "#EF4444"
+      },
+      "light": {
+        "bg": "#F5F7F6",
+        "surface": "#FFFFFF",
+        "surface2": "#EEF2F0",
+        "border": "#DCE3E0",
+        "text": "#10151A",
+        "textMuted": "#5C6670",
+        "accent": "#159C6B",
+        "accentDark": "#0E7550",
+        "accent2": "#3E6FD9",
+        "premium": "#B5790A",
+        "danger": "#D93025"
+      }
+    },
+    "fonts": {
+      "display": "'Space Grotesk', 'Segoe UI', sans-serif",
+      "body": "'Inter', 'Segoe UI', sans-serif",
+      "mono": "'JetBrains Mono', 'Consolas', monospace"
+    },
+    "radius": "18px"
+  },
+  "branding": {
+    "logoSvg": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='28' r='18' fill='none' stroke='#34D399' stroke-width='3'/><circle cx='32' cy='28' r='3' fill='#34D399'/><rect x='12' y='48' width='40' height='8' rx='4' fill='#1C825C'/><rect x='18' y='50' width='28' height='4' rx='2' fill='#34D399'/></svg>",
+    "faviconSvg": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='14' fill='#0F1419'/><circle cx='32' cy='28' r='16' fill='none' stroke='#34D399' stroke-width='3'/><circle cx='32' cy='28' r='3' fill='#34D399'/></svg>"
+  },
+  "premium": {
+    "enabled": true,
+    "priceFcfa": 700,
+    "priceUsd": 1.22,
+    "priceEur": 1.07,
+    "licenseLabel": "Licence à vie",
+    "kikiapayLink": "https://direct.kkiapay.me/38121/clipsafe-mfYsHEwzN",
+    "features": [
+      "Coffres illimités",
+      "Export chiffré",
+      "Thèmes premium",
+      "Aucune publicité"
+    ]
+  },
+  "categories": [
+    { "id": "texts", "label": "Textes", "color": "#5B8DEF", "icon": "text" },
+    { "id": "links", "label": "Liens", "color": "#34D399", "icon": "link" },
+    { "id": "numbers", "label": "Numéros", "color": "#F0B429", "icon": "hash" }
+  ],
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "enabled": true,
+      "title": "Votre presse-papiers, mis sous clé.",
+      "subtitle": "ClipSafe capture, trie et protège tout ce que vous copiez — 100% local, aucune donnée envoyée en ligne.",
+      "style": { "bold": true, "italic": false, "underline": false }
+    },
+    {
+      "id": "capture",
+      "type": "capture",
+      "enabled": true,
+      "title": "Capturer un élément",
+      "subtitle": "Collez ou saisissez un texte, un lien ou un numéro.",
+      "style": { "bold": false, "italic": false, "underline": false }
+    },
+    {
+      "id": "vault",
+      "type": "vault",
+      "enabled": true,
+      "title": "Votre coffre",
+      "subtitle": "Trié automatiquement par catégorie.",
+      "style": { "bold": false, "italic": false, "underline": false }
+    },
+    {
+      "id": "premium-block",
+      "type": "premium",
+      "enabled": true,
+      "title": "Passez à ClipSafe Premium",
+      "subtitle": "Licence à vie, paiement unique.",
+      "style": { "bold": true, "italic": false, "underline": false }
+    }
+  ],
+  "footer": {
+    "text": "Powered by EMPIRE CODE.",
+    "buttons": [
+      {
+        "id": "whatsapp",
+        "label": "WhatsApp",
+        "url": "https://wa.me/2290196809106",
+        "icon": "whatsapp",
+        "color": "#25D366"
+      },
+      {
+        "id": "shop",
+        "label": "Boutique EMPIRE CODE",
+        "url": "https://mychariow.co",
+        "icon": "shop",
+        "color": "#5B8DEF"
+      },
+      {
+        "id": "email",
+        "label": "Email",
+        "url": "mailto:empiredonko@gmail.com",
+        "icon": "mail",
+        "color": "#F0B429"
+      }
+    ]
+  }
+}

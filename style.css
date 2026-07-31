@@ -1,0 +1,269 @@
+/* =========================================================================
+   ClipSafe — style.css
+   Toutes les couleurs/typos réelles sont injectées en variables CSS par
+   app.js depuis data.json. Ce fichier ne fait que consommer ces variables.
+   ========================================================================= */
+
+:root {
+  --cs-bg: #0f1419;
+  --cs-surface: #171d26;
+  --cs-surface2: #1e2530;
+  --cs-border: #2a3240;
+  --cs-text: #e8ecef;
+  --cs-textMuted: #8a94a6;
+  --cs-accent: #34d399;
+  --cs-accentDark: #1c825c;
+  --cs-accent2: #5b8def;
+  --cs-premium: #f0b429;
+  --cs-danger: #ef4444;
+  --cs-font-display: "Space Grotesk", sans-serif;
+  --cs-font-body: "Inter", sans-serif;
+  --cs-font-mono: "JetBrains Mono", monospace;
+  --cs-radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cs-bg);
+  color: var(--cs-text);
+  font-family: var(--cs-font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+#app-root {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 1.1rem;
+}
+
+/* ---------- Topbar ---------- */
+.cs-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.4rem 0 1rem;
+}
+.cs-logo svg { display: block; }
+.cs-appname {
+  font-family: var(--cs-font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex: 1;
+}
+.cs-theme-toggle {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease;
+}
+.cs-theme-toggle:hover { border-color: var(--cs-accent); }
+
+/* ---------- Sections ---------- */
+.cs-section { margin-bottom: 1.8rem; }
+.cs-section-title {
+  font-family: var(--cs-font-display);
+  font-size: 1.5rem;
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.01em;
+}
+.cs-section-subtitle {
+  color: var(--cs-textMuted);
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.cs-section--hero .cs-section-title { font-size: 1.9rem; line-height: 1.2; }
+
+/* ---------- Capture ---------- */
+.cs-capture {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  padding: 1rem;
+}
+.cs-textarea {
+  width: 100%;
+  resize: vertical;
+  background: var(--cs-surface2);
+  border: 1px solid var(--cs-border);
+  border-radius: 12px;
+  color: var(--cs-text);
+  font-family: var(--cs-font-mono);
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  outline: none;
+}
+.cs-textarea:focus { border-color: var(--cs-accent); }
+.cs-capture-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.cs-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.1rem;
+  font-family: var(--cs-font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.cs-btn:active { transform: scale(0.97); }
+.cs-btn:focus-visible { outline: 2px solid var(--cs-accent2); outline-offset: 2px; }
+.cs-btn--primary { background: var(--cs-accent); color: #06231a; }
+.cs-btn--ghost { background: transparent; color: var(--cs-text); border: 1px solid var(--cs-border); }
+.cs-btn--premium { background: var(--cs-premium); color: #2b1c00; width: 100%; margin-top: 0.4rem; }
+
+/* ---------- Vault cards : carte "scellée", bord perforé ---------- */
+.cs-vault-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.cs-empty { color: var(--cs-textMuted); font-style: italic; }
+
+.cs-card {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  overflow: hidden;
+}
+.cs-card-content {
+  padding: 0.9rem 1rem 0.7rem;
+  font-family: var(--cs-font-mono);
+  font-size: 0.88rem;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.cs-card-seal {
+  border-top: 1px dashed var(--cs-border);
+  margin: 0 0.9rem;
+}
+.cs-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem 0.8rem;
+  flex-wrap: wrap;
+}
+.cs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--tag-color, var(--cs-accent));
+  background: color-mix(in srgb, var(--tag-color, var(--cs-accent)) 15%, transparent);
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+}
+.cs-date { color: var(--cs-textMuted); font-size: 0.78rem; }
+.cs-card-buttons { margin-left: auto; display: flex; gap: 0.3rem; }
+.cs-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--cs-textMuted);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 8px;
+  display: flex;
+}
+.cs-icon-btn:hover { color: var(--cs-text); background: var(--cs-surface2); }
+
+/* ---------- Premium ---------- */
+.cs-premium {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  padding: 1rem;
+}
+.cs-premium-features { margin: 0 0 0.3rem; padding-left: 1.1rem; color: var(--cs-textMuted); font-size: 0.9rem; }
+.cs-premium-features li { margin-bottom: 0.3rem; }
+.cs-premium-active {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cs-premium);
+  font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+.cs-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--cs-border);
+  text-align: center;
+}
+.cs-footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+.cs-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--btn-color, var(--cs-text));
+  border: 1px solid var(--cs-border);
+  background: var(--cs-surface);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+.cs-footer-btn:hover { border-color: var(--btn-color, var(--cs-accent)); }
+.cs-footer-text {
+  color: var(--cs-textMuted);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.2rem;
+}
+
+/* ---------- Toast ---------- */
+.cs-toast {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--cs-surface2);
+  border: 1px solid var(--cs-border);
+  color: var(--cs-text);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 999;
+}
+.cs-toast--visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.cs-error { color: var(--cs-danger); padding: 2rem 0; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-btn, .cs-toast { transition: none; }
+}
