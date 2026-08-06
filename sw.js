@@ -8,7 +8,7 @@
 // reste — y compris les actualisations et les réouvertures via le lien — fonctionne
 // intégralement hors ligne grâce au cache ci-dessous.
 
-const CACHE_NAME = "clipsafe-cache-v3";
+const CACHE_NAME = "clipsafe-cache-v4";
 const CORE_ASSETS = [
   "./",
   "./index.html",

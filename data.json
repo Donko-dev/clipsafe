@@ -62,7 +62,7 @@
     "priceEur": 1.07,
     "kikiapayLink": "https://direct.kkiapay.me/38121/clipsafe-mfYsHEwzN",
     "trialDays": 7,
-    "licenseKeyHash": "61f1c28f56d05a4c444aec4d5e854b541276c837d07b2ffb6c4f36658841c698"
+    "licenseKeys": []
   },
   "categories": [
     {
@@ -226,7 +226,8 @@
         "itemAddedToast": "Ajouté au coffre !",
         "downloadLabel": "Télécharger",
         "shareBinaryUnsupported": "Le partage direct de ce fichier nécessite le menu de partage natif de votre appareil, non disponible ici.",
-        "trialDaysLeftLabel": "{left}/{total} jours d'essai restants"
+        "trialDaysLeftLabel": "{left}/{total} jours d'essai restants",
+        "premiumActiveUntil": "Licence active jusqu'au {date} — merci pour votre confiance."
       },
       "categories": {
         "texts": "Textes",
@@ -317,7 +318,8 @@
         "itemAddedToast": "Added to vault!",
         "downloadLabel": "Download",
         "shareBinaryUnsupported": "Directly sharing this file requires your device's native share menu, which isn't available here.",
-        "trialDaysLeftLabel": "{left}/{total} trial days left"
+        "trialDaysLeftLabel": "{left}/{total} trial days left",
+        "premiumActiveUntil": "License active until {date} — thank you for your support."
       },
       "categories": {
         "texts": "Texts",
@@ -408,7 +410,8 @@
         "itemAddedToast": "Zum Tresor hinzugefügt!",
         "downloadLabel": "Herunterladen",
         "shareBinaryUnsupported": "Das direkte Teilen dieser Datei erfordert das native Freigabemenü Ihres Geräts, das hier nicht verfügbar ist.",
-        "trialDaysLeftLabel": "Noch {left}/{total} Testtage"
+        "trialDaysLeftLabel": "Noch {left}/{total} Testtage",
+        "premiumActiveUntil": "Lizenz aktiv bis {date} — vielen Dank für Ihr Vertrauen."
       },
       "categories": {
         "texts": "Texte",
@@ -499,7 +502,8 @@
         "itemAddedToast": "¡Añadido a la caja fuerte!",
         "downloadLabel": "Descargar",
         "shareBinaryUnsupported": "Compartir este archivo directamente requiere el menú de compartir nativo de tu dispositivo, no disponible aquí.",
-        "trialDaysLeftLabel": "{left}/{total} días de prueba restantes"
+        "trialDaysLeftLabel": "{left}/{total} días de prueba restantes",
+        "premiumActiveUntil": "Licencia activa hasta el {date} — gracias por tu confianza."
       },
       "categories": {
         "texts": "Textos",
@@ -590,7 +594,8 @@
         "itemAddedToast": "已添加到保险箱！",
         "downloadLabel": "下载",
         "shareBinaryUnsupported": "直接分享此文件需要使用您设备的原生分享菜单，此处不可用。",
-        "trialDaysLeftLabel": "试用剩余 {left}/{total} 天"
+        "trialDaysLeftLabel": "试用剩余 {left}/{total} 天",
+        "premiumActiveUntil": "授权有效期至 {date}——感谢您的支持。"
       },
       "categories": {
         "texts": "文本",
@@ -681,7 +686,8 @@
         "itemAddedToast": "تمت الإضافة إلى الخزنة!",
         "downloadLabel": "تنزيل",
         "shareBinaryUnsupported": "مشاركة هذا الملف مباشرة تتطلب قائمة المشاركة الأصلية لجهازك، وهي غير متوفرة هنا.",
-        "trialDaysLeftLabel": "تبقّى {left}/{total} أيام من الفترة التجريبية"
+        "trialDaysLeftLabel": "تبقّى {left}/{total} أيام من الفترة التجريبية",
+        "premiumActiveUntil": "الترخيص ساري حتى {date} — شكرًا لثقتك."
       },
       "categories": {
         "texts": "نصوص",
@@ -772,7 +778,8 @@
         "itemAddedToast": "Добавлено в сейф!",
         "downloadLabel": "Скачать",
         "shareBinaryUnsupported": "Прямая отправка этого файла требует нативного меню «Поделиться» вашего устройства, которое здесь недоступно.",
-        "trialDaysLeftLabel": "Осталось {left}/{total} дней пробного периода"
+        "trialDaysLeftLabel": "Осталось {left}/{total} дней пробного периода",
+        "premiumActiveUntil": "Лицензия активна до {date} — спасибо за доверие."
       },
       "categories": {
         "texts": "Тексты",

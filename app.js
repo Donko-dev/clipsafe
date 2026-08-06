@@ -72,6 +72,8 @@ const PremiumLock = {
   FLAG_KEY: "cs_px",
   SIG_KEY: "cs_px_sig",
   SALT_KEY: "cs_px_salt",
+  KEYHASH_KEY: "cs_px_keyhash",
+  EXPIRES_KEY: "cs_px_expires",
 
   async _salt() {
     let salt = localStorage.getItem(this.SALT_KEY);
@@ -85,17 +87,41 @@ const PremiumLock = {
   async isPremium() {
     const flag = localStorage.getItem(this.FLAG_KEY);
     const sig = localStorage.getItem(this.SIG_KEY);
-    if (!flag || !sig) return false;
+    const keyHash = localStorage.getItem(this.KEYHASH_KEY) || "";
+    const expires = localStorage.getItem(this.EXPIRES_KEY) || "";
+    if (!flag || !sig || flag !== "granted") return false;
     const salt = await this._salt();
-    const expected = await CryptoBox.sha256Hex(salt + ":" + flag);
-    return expected === sig && flag === "granted";
+    const expected = await CryptoBox.sha256Hex(salt + ":granted:" + keyHash + ":" + expires);
+    if (expected !== sig) return false;
+    if (expires && Date.now() > Number(expires)) {
+      this.revoke();
+      return false;
+    }
+    return true;
   },
 
-  async grant() {
+  /** durationDays: 0/falsy = à vie. Retourne le timestamp d'expiration (ou null si à vie). */
+  async grant(keyHash, durationDays) {
     const salt = await this._salt();
-    const sig = await CryptoBox.sha256Hex(salt + ":granted");
+    const expires = durationDays && durationDays > 0 ? String(Date.now() + durationDays * 86400000) : "";
+    const sig = await CryptoBox.sha256Hex(salt + ":granted:" + keyHash + ":" + expires);
     localStorage.setItem(this.FLAG_KEY, "granted");
     localStorage.setItem(this.SIG_KEY, sig);
+    localStorage.setItem(this.KEYHASH_KEY, keyHash);
+    localStorage.setItem(this.EXPIRES_KEY, expires);
+    return expires ? Number(expires) : null;
+  },
+
+  revoke() {
+    localStorage.removeItem(this.FLAG_KEY);
+    localStorage.removeItem(this.SIG_KEY);
+    localStorage.removeItem(this.KEYHASH_KEY);
+    localStorage.removeItem(this.EXPIRES_KEY);
+  },
+
+  async getExpiresAt() {
+    const expires = localStorage.getItem(this.EXPIRES_KEY);
+    return expires ? Number(expires) : null;
   },
 };
 
@@ -1050,7 +1076,14 @@ const ClipSafeApp = {
     const renderState = async () => {
       const isPremium = await PremiumLock.isPremium();
       if (isPremium) {
-        box.innerHTML = `<div class="cs-premium-active">${ICONS.lock}<span>${escapeHtml(this.t("ui.premiumActive"))}</span></div>`;
+        const expiresAt = await PremiumLock.getExpiresAt();
+        const activeMsg = expiresAt
+          ? this.t("ui.premiumActiveUntil").replace(
+              "{date}",
+              new Date(expiresAt).toLocaleDateString(LOCALE_MAP[this.getLang()] || "fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })
+            )
+          : this.t("ui.premiumActive");
+        box.innerHTML = `<div class="cs-premium-active">${ICONS.lock}<span>${escapeHtml(activeMsg)}</span></div>`;
         return;
       }
       const features = this.t("premium.features");
@@ -1115,8 +1148,10 @@ const ClipSafeApp = {
     const value = input.value.trim();
     if (!value) return;
     const hash = await CryptoBox.sha256Hex(value);
-    if (hash === this.data.premium.licenseKeyHash) {
-      await PremiumLock.grant();
+    const keys = this.data.premium.licenseKeys || [];
+    const match = keys.find((k) => k.hash === hash);
+    if (match) {
+      await PremiumLock.grant(match.hash, match.durationDays || 0);
       this.toast(this.t("ui.licenseGranted"));
       this.closeOverlay();
       this.render();

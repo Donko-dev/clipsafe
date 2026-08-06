@@ -89,7 +89,8 @@ body { min-height: 100vh; padding-bottom: 2rem; }
   color: var(--cs-text); padding: 0.65rem 1rem; font-family: var(--cs-font-body); font-size: 0.9rem; outline: none;
 }
 .cs-search-input:focus { border-color: var(--cs-accent); }
-.cs-chip-row { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; }
+.cs-chip-row { display: none; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; }
+.cs-chip-row:not([hidden]) { display: flex; }
 .cs-chip-row::-webkit-scrollbar { display: none; }
 .cs-chip {
   flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.3rem;
@@ -163,7 +164,11 @@ body { min-height: 100vh; padding-bottom: 2rem; }
 .cs-footer-text { color: var(--cs-textMuted); font-size: 0.78rem; letter-spacing: 0.02em; margin: 0 0 1.2rem; }
 
 /* ---------- Overlay / modales (détail, licence, partage) ---------- */
-.cs-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000; display: flex; align-items: flex-end; justify-content: center; }
+.cs-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000;
+  display: none; align-items: flex-end; justify-content: center;
+}
+.cs-overlay:not([hidden]) { display: flex; }
 .cs-modal {
   background: var(--cs-surface); width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto;
   border-radius: 20px 20px 0 0; padding: 1rem 1.1rem 1.4rem;
