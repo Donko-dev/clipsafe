@@ -52,776 +52,128 @@
     "radius": "18px"
   },
   "branding": {
-    "logoSvg": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='28' r='18' fill='none' stroke='#34D399' stroke-width='3'/><circle cx='32' cy='28' r='3' fill='#34D399'/><rect x='12' y='48' width='40' height='8' rx='4' fill='#1C825C'/><rect x='18' y='50' width='28' height='4' rx='2' fill='#34D399'/></svg>",
-    "faviconSvg": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='14' fill='#0F1419'/><circle cx='32' cy='28' r='16' fill='none' stroke='#34D399' stroke-width='3'/><circle cx='32' cy='28' r='3' fill='#34D399'/></svg>"
+    "logoSvg": "",
+    "faviconSvg": ""
   },
   "premium": {
     "enabled": true,
     "priceFcfa": 700,
     "priceUsd": 1.22,
     "priceEur": 1.07,
-    "kikiapayLink": "https://direct.kkiapay.me/38121/clipsafe-mfYsHEwzN",
+    "kikiapayLink": "#",
     "trialDays": 7,
-    "licenseKeys": []
-  },
-  "categories": [
-    {
-      "id": "texts",
-      "color": "#5B8DEF",
-      "icon": "text"
-    },
-    {
-      "id": "links",
-      "color": "#34D399",
-      "icon": "link"
-    },
-    {
-      "id": "emails",
-      "color": "#22C1DA",
-      "icon": "email"
-    },
-    {
-      "id": "numbers",
-      "color": "#F0B429",
-      "icon": "hash"
-    },
-    {
-      "id": "code",
-      "color": "#A78BFA",
-      "icon": "code"
-    },
-    {
-      "id": "cv",
-      "color": "#F97316",
-      "icon": "cv"
-    },
-    {
-      "id": "portfolio",
-      "color": "#EC4899",
-      "icon": "portfolio"
-    },
-    {
-      "id": "images",
-      "color": "#2DD4BF",
-      "icon": "image"
-    },
-    {
-      "id": "documents",
-      "color": "#94A3B8",
-      "icon": "document"
-    }
-  ],
-  "sections": [
-    {
-      "id": "hero",
-      "type": "hero",
-      "enabled": true,
-      "style": {
-        "bold": true,
-        "italic": false,
-        "underline": false
-      }
-    },
-    {
-      "id": "capture",
-      "type": "capture",
-      "enabled": true,
-      "style": {
-        "bold": false,
-        "italic": false,
-        "underline": false
-      }
-    },
-    {
-      "id": "vault",
-      "type": "vault",
-      "enabled": true,
-      "style": {
-        "bold": false,
-        "italic": false,
-        "underline": false
-      }
-    },
-    {
-      "id": "premium-block",
-      "type": "premium",
-      "enabled": true,
-      "style": {
-        "bold": true,
-        "italic": false,
-        "underline": false
-      }
-    }
-  ],
-  "footer": {
-    "text": "Powered by EMPIRE CODE.",
-    "buttons": [
+    "licenseKeys": [
       {
-        "id": "whatsapp",
-        "label": "WhatsApp",
-        "url": "https://wa.me/2290196809106",
-        "icon": "whatsapp",
-        "color": "#25D366"
-      },
-      {
-        "id": "shop",
-        "label": "Boutique EMPIRE CODE",
-        "url": "https://mychariow.co",
-        "icon": "shop",
-        "color": "#5B8DEF"
-      },
-      {
-        "id": "email",
-        "label": "Email",
-        "url": "mailto:empiredonko@gmail.com",
-        "icon": "mail",
-        "color": "#F0B429"
+        "hash": "ffe5d499a7e22489c3dcbfa217ccb8152668fa857ebf4358e5b4bf95f13dc1ed",
+        "label": "clipce101094",
+        "durationDays": 35000,
+        "issuedAt": "2026-08-06"
       }
     ]
   },
+  "categories": [],
+  "sections": [],
+  "footer": {
+    "text": "Powered by EMPIRE CODE.",
+    "buttons": []
+  },
   "i18n": {
     "fr": {
-      "tagline": "Coffre-fort de presse-papiers intelligent",
-      "ui": {
-        "pasteBtn": "Coller un texte",
-        "pasteImageBtn": "Coller une image",
-        "importDocBtn": "Importer un document",
-        "smartPasteBtn": "Coller automatiquement",
-        "addBtn": "Ajouter au coffre",
-        "placeholderCapture": "Collez ou saisissez un texte, un lien, du code…",
-        "emptyVault": "Votre coffre est vide pour l'instant.",
-        "noResults": "Aucun résultat pour ces filtres.",
-        "searchPlaceholder": "Rechercher un mot, un lien, un domaine…",
-        "filterAllLabel": "Tous",
-        "filterFavoritesLabel": "Favoris",
-        "filterPinnedLabel": "Épinglés",
-        "filterAllCodeLabel": "Tous les langages",
-        "copyTooltip": "Copier",
-        "deleteTooltip": "Supprimer",
-        "shareTooltip": "Partager",
-        "favoriteTooltip": "Favori",
-        "pinTooltip": "Épingler",
-        "editTooltip": "Modifier",
-        "saveTooltip": "Enregistrer",
-        "cancelEditTooltip": "Annuler",
-        "closeTooltip": "Fermer",
-        "copiedToast": "Copié !",
-        "clipboardDenied": "Autorisation presse-papiers refusée. Collez manuellement (Ctrl/Cmd+V).",
-        "imageDocPasteError": "Aucune image trouvée dans le presse-papiers.",
-        "documentImportedToast": "Document ajouté au coffre.",
-        "fileKindOther": "Autre fichier",
-        "premiumActive": "Licence à vie activée — merci pour votre confiance.",
-        "langLabel": "Langue",
-        "shareVia": "Partager via…",
-        "shareCopyLink": "Copier le texte",
-        "licenseModalTitle": "Activer votre licence",
-        "licenseInputPlaceholder": "Entrez votre clé de licence",
-        "licenseValidateBtn": "Valider",
-        "licenseCancelBtn": "Annuler",
-        "licenseInvalid": "Clé invalide. Vérifiez et réessayez.",
-        "licenseGranted": "Licence activée. Merci !",
-        "trialExpiredTitle": "Période d'essai terminée",
-        "trialExpiredMessage": "Vous avez utilisé ClipSafe gratuitement pendant {days} jours. Activez votre licence pour continuer à ajouter des éléments.",
-        "haveLicenseBtn": "J'ai déjà une clé de licence",
-        "itemAddedToast": "Ajouté au coffre !",
-        "downloadLabel": "Télécharger",
-        "shareBinaryUnsupported": "Le partage direct de ce fichier nécessite le menu de partage natif de votre appareil, non disponible ici.",
-        "trialDaysLeftLabel": "{left}/{total} jours d'essai restants",
-        "premiumActiveUntil": "Licence active jusqu'au {date} — merci pour votre confiance."
-      },
-      "categories": {
-        "texts": "Textes",
-        "links": "Liens",
-        "emails": "Emails",
-        "numbers": "Numéros",
-        "code": "Code",
-        "cv": "CV",
-        "portfolio": "Portfolio",
-        "images": "Images",
-        "documents": "Documents"
-      },
-      "sections": {
-        "hero": {
-          "title": "Votre presse-papiers, mis sous clé.",
-          "subtitle": "ClipSafe capture, trie et protège tout ce que vous copiez — 100% local, aucune donnée envoyée en ligne."
-        },
-        "capture": {
-          "title": "Capturer un élément",
-          "subtitle": "Texte, image, document — tout est trié automatiquement."
-        },
-        "vault": {
-          "title": "Votre coffre",
-          "subtitle": "Recherchez et filtrez par catégorie, favoris ou épinglés."
-        },
-        "premium-block": {
-          "title": "Passez à ClipSafe Premium",
-          "subtitle": "Licence à vie, paiement unique."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "Licence à vie",
-        "features": [
-          "Usage illimité, sans limite de 7 jours",
-          "Export chiffré",
-          "Thèmes premium",
-          "Aucune publicité"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "Une idée d'outil sur mesure, fonctionnant hors connexion, hors serveur, hors base de données, pour votre activité et votre confidentialité ?",
-        "ctaLink": "Écrivez-nous."
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "en": {
-      "tagline": "Smart clipboard vault",
-      "ui": {
-        "pasteBtn": "Paste text",
-        "pasteImageBtn": "Paste an image",
-        "importDocBtn": "Import a document",
-        "smartPasteBtn": "Smart paste",
-        "addBtn": "Add to vault",
-        "placeholderCapture": "Paste or type a text, a link, some code…",
-        "emptyVault": "Your vault is empty for now.",
-        "noResults": "No results for these filters.",
-        "searchPlaceholder": "Search a word, a link, a domain…",
-        "filterAllLabel": "All",
-        "filterFavoritesLabel": "Favorites",
-        "filterPinnedLabel": "Pinned",
-        "filterAllCodeLabel": "All languages",
-        "copyTooltip": "Copy",
-        "deleteTooltip": "Delete",
-        "shareTooltip": "Share",
-        "favoriteTooltip": "Favorite",
-        "pinTooltip": "Pin",
-        "editTooltip": "Edit",
-        "saveTooltip": "Save",
-        "cancelEditTooltip": "Cancel",
-        "closeTooltip": "Close",
-        "copiedToast": "Copied!",
-        "clipboardDenied": "Clipboard permission denied. Paste manually (Ctrl/Cmd+V).",
-        "imageDocPasteError": "No image found on the clipboard.",
-        "documentImportedToast": "Document added to the vault.",
-        "fileKindOther": "Other file",
-        "premiumActive": "Lifetime license active — thank you for your support.",
-        "langLabel": "Language",
-        "shareVia": "Share via…",
-        "shareCopyLink": "Copy text",
-        "licenseModalTitle": "Activate your license",
-        "licenseInputPlaceholder": "Enter your license key",
-        "licenseValidateBtn": "Validate",
-        "licenseCancelBtn": "Cancel",
-        "licenseInvalid": "Invalid key. Please check and try again.",
-        "licenseGranted": "License activated. Thank you!",
-        "trialExpiredTitle": "Trial period over",
-        "trialExpiredMessage": "You've used ClipSafe for free for {days} days. Activate your license to keep adding items.",
-        "haveLicenseBtn": "I already have a license key",
-        "itemAddedToast": "Added to vault!",
-        "downloadLabel": "Download",
-        "shareBinaryUnsupported": "Directly sharing this file requires your device's native share menu, which isn't available here.",
-        "trialDaysLeftLabel": "{left}/{total} trial days left",
-        "premiumActiveUntil": "License active until {date} — thank you for your support."
-      },
-      "categories": {
-        "texts": "Texts",
-        "links": "Links",
-        "emails": "Emails",
-        "numbers": "Numbers",
-        "code": "Code",
-        "cv": "Resume",
-        "portfolio": "Portfolio",
-        "images": "Images",
-        "documents": "Documents"
-      },
-      "sections": {
-        "hero": {
-          "title": "Your clipboard, locked down.",
-          "subtitle": "ClipSafe captures, sorts, and protects everything you copy — 100% local, no data ever sent online."
-        },
-        "capture": {
-          "title": "Capture an item",
-          "subtitle": "Text, image, document — everything is sorted automatically."
-        },
-        "vault": {
-          "title": "Your vault",
-          "subtitle": "Search and filter by category, favorites, or pinned."
-        },
-        "premium-block": {
-          "title": "Upgrade to ClipSafe Premium",
-          "subtitle": "Lifetime license, one-time payment."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "Lifetime license",
-        "features": [
-          "Unlimited use, no 7-day limit",
-          "Encrypted export",
-          "Premium themes",
-          "No ads"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "An idea for a custom tool — offline, serverless, database-free — for your business and your privacy?",
-        "ctaLink": "Write to us."
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "de": {
-      "tagline": "Intelligenter Zwischenablage-Tresor",
-      "ui": {
-        "pasteBtn": "Text einfügen",
-        "pasteImageBtn": "Bild einfügen",
-        "importDocBtn": "Dokument importieren",
-        "smartPasteBtn": "Automatisch einfügen",
-        "addBtn": "Zum Tresor hinzufügen",
-        "placeholderCapture": "Text, Link oder Code einfügen oder eingeben…",
-        "emptyVault": "Ihr Tresor ist derzeit leer.",
-        "noResults": "Keine Ergebnisse für diese Filter.",
-        "searchPlaceholder": "Wort, Link oder Domain suchen…",
-        "filterAllLabel": "Alle",
-        "filterFavoritesLabel": "Favoriten",
-        "filterPinnedLabel": "Angeheftet",
-        "filterAllCodeLabel": "Alle Sprachen",
-        "copyTooltip": "Kopieren",
-        "deleteTooltip": "Löschen",
-        "shareTooltip": "Teilen",
-        "favoriteTooltip": "Favorit",
-        "pinTooltip": "Anheften",
-        "editTooltip": "Bearbeiten",
-        "saveTooltip": "Speichern",
-        "cancelEditTooltip": "Abbrechen",
-        "closeTooltip": "Schließen",
-        "copiedToast": "Kopiert!",
-        "clipboardDenied": "Zugriff auf die Zwischenablage verweigert. Bitte manuell einfügen (Strg/Cmd+V).",
-        "imageDocPasteError": "Kein Bild in der Zwischenablage gefunden.",
-        "documentImportedToast": "Dokument zum Tresor hinzugefügt.",
-        "fileKindOther": "Andere Datei",
-        "premiumActive": "Lebenslange Lizenz aktiv — vielen Dank für Ihr Vertrauen.",
-        "langLabel": "Sprache",
-        "shareVia": "Teilen über…",
-        "shareCopyLink": "Text kopieren",
-        "licenseModalTitle": "Lizenz aktivieren",
-        "licenseInputPlaceholder": "Lizenzschlüssel eingeben",
-        "licenseValidateBtn": "Bestätigen",
-        "licenseCancelBtn": "Abbrechen",
-        "licenseInvalid": "Ungültiger Schlüssel. Bitte überprüfen und erneut versuchen.",
-        "licenseGranted": "Lizenz aktiviert. Vielen Dank!",
-        "trialExpiredTitle": "Testphase beendet",
-        "trialExpiredMessage": "Sie haben ClipSafe {days} Tage lang kostenlos genutzt. Aktivieren Sie Ihre Lizenz, um weiter Elemente hinzuzufügen.",
-        "haveLicenseBtn": "Ich habe bereits einen Lizenzschlüssel",
-        "itemAddedToast": "Zum Tresor hinzugefügt!",
-        "downloadLabel": "Herunterladen",
-        "shareBinaryUnsupported": "Das direkte Teilen dieser Datei erfordert das native Freigabemenü Ihres Geräts, das hier nicht verfügbar ist.",
-        "trialDaysLeftLabel": "Noch {left}/{total} Testtage",
-        "premiumActiveUntil": "Lizenz aktiv bis {date} — vielen Dank für Ihr Vertrauen."
-      },
-      "categories": {
-        "texts": "Texte",
-        "links": "Links",
-        "emails": "E-Mails",
-        "numbers": "Nummern",
-        "code": "Code",
-        "cv": "Lebenslauf",
-        "portfolio": "Portfolio",
-        "images": "Bilder",
-        "documents": "Dokumente"
-      },
-      "sections": {
-        "hero": {
-          "title": "Ihre Zwischenablage, sicher verschlossen.",
-          "subtitle": "ClipSafe erfasst, sortiert und schützt alles, was Sie kopieren — 100% lokal, es werden keine Daten online übertragen."
-        },
-        "capture": {
-          "title": "Element erfassen",
-          "subtitle": "Text, Bild, Dokument — alles wird automatisch sortiert."
-        },
-        "vault": {
-          "title": "Ihr Tresor",
-          "subtitle": "Suchen und filtern Sie nach Kategorie, Favoriten oder Angehefteten."
-        },
-        "premium-block": {
-          "title": "Auf ClipSafe Premium upgraden",
-          "subtitle": "Lebenslange Lizenz, einmalige Zahlung."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "Lebenslange Lizenz",
-        "features": [
-          "Unbegrenzte Nutzung, kein 7-Tage-Limit",
-          "Verschlüsselter Export",
-          "Premium-Designs",
-          "Keine Werbung"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "Eine Idee für ein maßgeschneidertes Tool — offline, ohne Server, ohne Datenbank — für Ihr Unternehmen und Ihre Privatsphäre?",
-        "ctaLink": "Schreiben Sie uns."
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "es": {
-      "tagline": "Caja fuerte inteligente del portapapeles",
-      "ui": {
-        "pasteBtn": "Pegar texto",
-        "pasteImageBtn": "Pegar una imagen",
-        "importDocBtn": "Importar un documento",
-        "smartPasteBtn": "Pegar automáticamente",
-        "addBtn": "Añadir a la caja fuerte",
-        "placeholderCapture": "Pega o escribe un texto, un enlace, código…",
-        "emptyVault": "Tu caja fuerte está vacía por ahora.",
-        "noResults": "Sin resultados para estos filtros.",
-        "searchPlaceholder": "Buscar una palabra, un enlace, un dominio…",
-        "filterAllLabel": "Todos",
-        "filterFavoritesLabel": "Favoritos",
-        "filterPinnedLabel": "Fijados",
-        "filterAllCodeLabel": "Todos los lenguajes",
-        "copyTooltip": "Copiar",
-        "deleteTooltip": "Eliminar",
-        "shareTooltip": "Compartir",
-        "favoriteTooltip": "Favorito",
-        "pinTooltip": "Fijar",
-        "editTooltip": "Editar",
-        "saveTooltip": "Guardar",
-        "cancelEditTooltip": "Cancelar",
-        "closeTooltip": "Cerrar",
-        "copiedToast": "¡Copiado!",
-        "clipboardDenied": "Permiso de portapapeles denegado. Pega manualmente (Ctrl/Cmd+V).",
-        "imageDocPasteError": "No se encontró ninguna imagen en el portapapeles.",
-        "documentImportedToast": "Documento añadido a la caja fuerte.",
-        "fileKindOther": "Otro archivo",
-        "premiumActive": "Licencia de por vida activada — gracias por tu confianza.",
-        "langLabel": "Idioma",
-        "shareVia": "Compartir vía…",
-        "shareCopyLink": "Copiar texto",
-        "licenseModalTitle": "Activa tu licencia",
-        "licenseInputPlaceholder": "Introduce tu clave de licencia",
-        "licenseValidateBtn": "Validar",
-        "licenseCancelBtn": "Cancelar",
-        "licenseInvalid": "Clave inválida. Verifica e inténtalo de nuevo.",
-        "licenseGranted": "Licencia activada. ¡Gracias!",
-        "trialExpiredTitle": "Periodo de prueba finalizado",
-        "trialExpiredMessage": "Has usado ClipSafe gratis durante {days} días. Activa tu licencia para seguir añadiendo elementos.",
-        "haveLicenseBtn": "Ya tengo una clave de licencia",
-        "itemAddedToast": "¡Añadido a la caja fuerte!",
-        "downloadLabel": "Descargar",
-        "shareBinaryUnsupported": "Compartir este archivo directamente requiere el menú de compartir nativo de tu dispositivo, no disponible aquí.",
-        "trialDaysLeftLabel": "{left}/{total} días de prueba restantes",
-        "premiumActiveUntil": "Licencia activa hasta el {date} — gracias por tu confianza."
-      },
-      "categories": {
-        "texts": "Textos",
-        "links": "Enlaces",
-        "emails": "Correos",
-        "numbers": "Números",
-        "code": "Código",
-        "cv": "CV",
-        "portfolio": "Portafolio",
-        "images": "Imágenes",
-        "documents": "Documentos"
-      },
-      "sections": {
-        "hero": {
-          "title": "Tu portapapeles, bajo llave.",
-          "subtitle": "ClipSafe captura, ordena y protege todo lo que copias — 100% local, sin enviar ningún dato en línea."
-        },
-        "capture": {
-          "title": "Capturar un elemento",
-          "subtitle": "Texto, imagen, documento — todo se ordena automáticamente."
-        },
-        "vault": {
-          "title": "Tu caja fuerte",
-          "subtitle": "Busca y filtra por categoría, favoritos o fijados."
-        },
-        "premium-block": {
-          "title": "Actualiza a ClipSafe Premium",
-          "subtitle": "Licencia de por vida, pago único."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "Licencia de por vida",
-        "features": [
-          "Uso ilimitado, sin límite de 7 días",
-          "Exportación cifrada",
-          "Temas premium",
-          "Sin anuncios"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "¿Una idea para una herramienta a medida —sin conexión, sin servidor, sin base de datos— para tu actividad y tu privacidad?",
-        "ctaLink": "Escríbenos."
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "zh": {
-      "tagline": "智能剪贴板保险箱",
-      "ui": {
-        "pasteBtn": "粘贴文本",
-        "pasteImageBtn": "粘贴图片",
-        "importDocBtn": "导入文档",
-        "smartPasteBtn": "自动粘贴",
-        "addBtn": "添加到保险箱",
-        "placeholderCapture": "粘贴或输入文本、链接或代码…",
-        "emptyVault": "您的保险箱目前是空的。",
-        "noResults": "没有符合筛选条件的结果。",
-        "searchPlaceholder": "搜索关键词、链接或域名…",
-        "filterAllLabel": "全部",
-        "filterFavoritesLabel": "收藏",
-        "filterPinnedLabel": "置顶",
-        "filterAllCodeLabel": "所有语言",
-        "copyTooltip": "复制",
-        "deleteTooltip": "删除",
-        "shareTooltip": "分享",
-        "favoriteTooltip": "收藏",
-        "pinTooltip": "置顶",
-        "editTooltip": "编辑",
-        "saveTooltip": "保存",
-        "cancelEditTooltip": "取消",
-        "closeTooltip": "关闭",
-        "copiedToast": "已复制！",
-        "clipboardDenied": "剪贴板权限被拒绝。请手动粘贴（Ctrl/Cmd+V）。",
-        "imageDocPasteError": "剪贴板中未找到图片。",
-        "documentImportedToast": "文档已添加到保险箱。",
-        "fileKindOther": "其他文件",
-        "premiumActive": "终身授权已激活——感谢您的支持。",
-        "langLabel": "语言",
-        "shareVia": "分享方式…",
-        "shareCopyLink": "复制文本",
-        "licenseModalTitle": "激活您的授权",
-        "licenseInputPlaceholder": "请输入您的授权密钥",
-        "licenseValidateBtn": "验证",
-        "licenseCancelBtn": "取消",
-        "licenseInvalid": "密钥无效，请检查后重试。",
-        "licenseGranted": "授权已激活，谢谢！",
-        "trialExpiredTitle": "试用期已结束",
-        "trialExpiredMessage": "您已免费使用 ClipSafe {days} 天。请激活授权以继续添加内容。",
-        "haveLicenseBtn": "我已经有授权密钥",
-        "itemAddedToast": "已添加到保险箱！",
-        "downloadLabel": "下载",
-        "shareBinaryUnsupported": "直接分享此文件需要使用您设备的原生分享菜单，此处不可用。",
-        "trialDaysLeftLabel": "试用剩余 {left}/{total} 天",
-        "premiumActiveUntil": "授权有效期至 {date}——感谢您的支持。"
-      },
-      "categories": {
-        "texts": "文本",
-        "links": "链接",
-        "emails": "邮箱",
-        "numbers": "号码",
-        "code": "代码",
-        "cv": "简历",
-        "portfolio": "作品集",
-        "images": "图片",
-        "documents": "文档"
-      },
-      "sections": {
-        "hero": {
-          "title": "您的剪贴板，安全锁定。",
-          "subtitle": "ClipSafe 捕获、整理并保护您复制的一切内容——100% 本地运行，绝不上传任何数据。"
-        },
-        "capture": {
-          "title": "捕获内容",
-          "subtitle": "文本、图片、文档——一切自动分类整理。"
-        },
-        "vault": {
-          "title": "您的保险箱",
-          "subtitle": "按类别、收藏或置顶进行搜索和筛选。"
-        },
-        "premium-block": {
-          "title": "升级至 ClipSafe 高级版",
-          "subtitle": "终身授权，一次性付款。"
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "终身授权",
-        "features": [
-          "无限使用，无 7 天限制",
-          "加密导出",
-          "高级主题",
-          "无广告"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "需要一款离线、无服务器、无数据库的定制工具，保护您的业务和隐私？",
-        "ctaLink": "联系我们。"
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "ar": {
-      "tagline": "خزنة ذكية للحافظة",
-      "ui": {
-        "pasteBtn": "لصق نص",
-        "pasteImageBtn": "لصق صورة",
-        "importDocBtn": "استيراد مستند",
-        "smartPasteBtn": "لصق تلقائي",
-        "addBtn": "إضافة إلى الخزنة",
-        "placeholderCapture": "الصق أو اكتب نصًا أو رابطًا أو رمز برمجة…",
-        "emptyVault": "خزنتك فارغة حاليًا.",
-        "noResults": "لا توجد نتائج لهذه الفلاتر.",
-        "searchPlaceholder": "ابحث عن كلمة أو رابط أو نطاق…",
-        "filterAllLabel": "الكل",
-        "filterFavoritesLabel": "المفضلة",
-        "filterPinnedLabel": "المثبّتة",
-        "filterAllCodeLabel": "كل اللغات",
-        "copyTooltip": "نسخ",
-        "deleteTooltip": "حذف",
-        "shareTooltip": "مشاركة",
-        "favoriteTooltip": "مفضلة",
-        "pinTooltip": "تثبيت",
-        "editTooltip": "تعديل",
-        "saveTooltip": "حفظ",
-        "cancelEditTooltip": "إلغاء",
-        "closeTooltip": "إغلاق",
-        "copiedToast": "تم النسخ!",
-        "clipboardDenied": "تم رفض إذن الحافظة. الصق يدويًا (Ctrl/Cmd+V).",
-        "imageDocPasteError": "لم يتم العثور على صورة في الحافظة.",
-        "documentImportedToast": "تمت إضافة المستند إلى الخزنة.",
-        "fileKindOther": "ملف آخر",
-        "premiumActive": "الترخيص مدى الحياة مُفعَّل — شكرًا لثقتك.",
-        "langLabel": "اللغة",
-        "shareVia": "مشاركة عبر…",
-        "shareCopyLink": "نسخ النص",
-        "licenseModalTitle": "فعّل ترخيصك",
-        "licenseInputPlaceholder": "أدخل مفتاح الترخيص",
-        "licenseValidateBtn": "تحقق",
-        "licenseCancelBtn": "إلغاء",
-        "licenseInvalid": "مفتاح غير صالح. تحقق وأعد المحاولة.",
-        "licenseGranted": "تم تفعيل الترخيص. شكرًا لك!",
-        "trialExpiredTitle": "انتهت الفترة التجريبية",
-        "trialExpiredMessage": "لقد استخدمت ClipSafe مجانًا لمدة {days} أيام. فعّل ترخيصك لمواصلة إضافة العناصر.",
-        "haveLicenseBtn": "لدي بالفعل مفتاح ترخيص",
-        "itemAddedToast": "تمت الإضافة إلى الخزنة!",
-        "downloadLabel": "تنزيل",
-        "shareBinaryUnsupported": "مشاركة هذا الملف مباشرة تتطلب قائمة المشاركة الأصلية لجهازك، وهي غير متوفرة هنا.",
-        "trialDaysLeftLabel": "تبقّى {left}/{total} أيام من الفترة التجريبية",
-        "premiumActiveUntil": "الترخيص ساري حتى {date} — شكرًا لثقتك."
-      },
-      "categories": {
-        "texts": "نصوص",
-        "links": "روابط",
-        "emails": "بريد إلكتروني",
-        "numbers": "أرقام",
-        "code": "برمجة",
-        "cv": "سيرة ذاتية",
-        "portfolio": "معرض أعمال",
-        "images": "صور",
-        "documents": "مستندات"
-      },
-      "sections": {
-        "hero": {
-          "title": "حافظتك، مؤمَّنة بالكامل.",
-          "subtitle": "يلتقط ClipSafe كل ما تنسخه ويصنّفه ويحميه — محليًا بنسبة 100%، دون إرسال أي بيانات عبر الإنترنت."
-        },
-        "capture": {
-          "title": "التقاط عنصر",
-          "subtitle": "نص، صورة، مستند — يتم فرز كل شيء تلقائيًا."
-        },
-        "vault": {
-          "title": "خزنتك",
-          "subtitle": "ابحث وصفِّ حسب الفئة أو المفضلة أو المثبّتة."
-        },
-        "premium-block": {
-          "title": "الترقية إلى ClipSafe Premium",
-          "subtitle": "ترخيص مدى الحياة، دفعة واحدة."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "ترخيص مدى الحياة",
-        "features": [
-          "استخدام غير محدود، دون حد الأيام السبعة",
-          "تصدير مشفّر",
-          "مظاهر مميزة",
-          "بدون إعلانات"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "هل لديك فكرة لأداة مخصّصة تعمل دون اتصال، دون خادم، دون قاعدة بيانات، لعملك وخصوصيتك؟",
-        "ctaLink": "راسلنا."
+        "ctaText": "",
+        "ctaLink": ""
       }
     },
     "ru": {
-      "tagline": "Умный сейф для буфера обмена",
-      "ui": {
-        "pasteBtn": "Вставить текст",
-        "pasteImageBtn": "Вставить изображение",
-        "importDocBtn": "Импортировать документ",
-        "smartPasteBtn": "Автовставка",
-        "addBtn": "Добавить в сейф",
-        "placeholderCapture": "Вставьте или введите текст, ссылку или код…",
-        "emptyVault": "Ваш сейф пока пуст.",
-        "noResults": "Нет результатов по этим фильтрам.",
-        "searchPlaceholder": "Поиск по слову, ссылке или домену…",
-        "filterAllLabel": "Все",
-        "filterFavoritesLabel": "Избранное",
-        "filterPinnedLabel": "Закреплённые",
-        "filterAllCodeLabel": "Все языки",
-        "copyTooltip": "Копировать",
-        "deleteTooltip": "Удалить",
-        "shareTooltip": "Поделиться",
-        "favoriteTooltip": "В избранное",
-        "pinTooltip": "Закрепить",
-        "editTooltip": "Редактировать",
-        "saveTooltip": "Сохранить",
-        "cancelEditTooltip": "Отмена",
-        "closeTooltip": "Закрыть",
-        "copiedToast": "Скопировано!",
-        "clipboardDenied": "Доступ к буферу обмена запрещён. Вставьте вручную (Ctrl/Cmd+V).",
-        "imageDocPasteError": "В буфере обмена не найдено изображение.",
-        "documentImportedToast": "Документ добавлен в сейф.",
-        "fileKindOther": "Другой файл",
-        "premiumActive": "Пожизненная лицензия активна — спасибо за доверие.",
-        "langLabel": "Язык",
-        "shareVia": "Поделиться через…",
-        "shareCopyLink": "Копировать текст",
-        "licenseModalTitle": "Активировать лицензию",
-        "licenseInputPlaceholder": "Введите лицензионный ключ",
-        "licenseValidateBtn": "Подтвердить",
-        "licenseCancelBtn": "Отмена",
-        "licenseInvalid": "Неверный ключ. Проверьте и попробуйте снова.",
-        "licenseGranted": "Лицензия активирована. Спасибо!",
-        "trialExpiredTitle": "Пробный период завершён",
-        "trialExpiredMessage": "Вы бесплатно использовали ClipSafe {days} дней. Активируйте лицензию, чтобы продолжить добавлять элементы.",
-        "haveLicenseBtn": "У меня уже есть лицензионный ключ",
-        "itemAddedToast": "Добавлено в сейф!",
-        "downloadLabel": "Скачать",
-        "shareBinaryUnsupported": "Прямая отправка этого файла требует нативного меню «Поделиться» вашего устройства, которое здесь недоступно.",
-        "trialDaysLeftLabel": "Осталось {left}/{total} дней пробного периода",
-        "premiumActiveUntil": "Лицензия активна до {date} — спасибо за доверие."
-      },
-      "categories": {
-        "texts": "Тексты",
-        "links": "Ссылки",
-        "emails": "Эл. почта",
-        "numbers": "Номера",
-        "code": "Код",
-        "cv": "Резюме",
-        "portfolio": "Портфолио",
-        "images": "Изображения",
-        "documents": "Документы"
-      },
-      "sections": {
-        "hero": {
-          "title": "Ваш буфер обмена под надёжной защитой.",
-          "subtitle": "ClipSafe сохраняет, сортирует и защищает всё, что вы копируете — на 100% локально, без передачи данных в сеть."
-        },
-        "capture": {
-          "title": "Захватить элемент",
-          "subtitle": "Текст, изображение, документ — всё сортируется автоматически."
-        },
-        "vault": {
-          "title": "Ваш сейф",
-          "subtitle": "Ищите и фильтруйте по категории, избранному или закреплённым."
-        },
-        "premium-block": {
-          "title": "Перейти на ClipSafe Premium",
-          "subtitle": "Пожизненная лицензия, разовый платёж."
-        }
-      },
+      "tagline": "",
+      "ui": {},
+      "categories": {},
+      "sections": {},
       "premium": {
-        "licenseLabel": "Пожизненная лицензия",
-        "features": [
-          "Неограниченное использование, без лимита в 7 дней",
-          "Шифрованный экспорт",
-          "Премиум-темы",
-          "Без рекламы"
-        ]
+        "licenseLabel": "",
+        "features": []
       },
       "footer": {
-        "ctaText": "Есть идея инструмента на заказ — офлайн, без сервера, без базы данных — для вашего бизнеса и конфиденциальности?",
-        "ctaLink": "Напишите нам."
+        "ctaText": "",
+        "ctaLink": ""
       }
     }
   }
