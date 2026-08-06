@@ -201,6 +201,9 @@ body { min-height: 100vh; padding-bottom: 2rem; }
 }
 .cs-row { display: flex; gap: 0.5rem; align-items: stretch; }
 .cs-row .cs-edit-select { flex: 1; }
+.cs-license-input-row { display: flex; gap: 0.5rem; align-items: stretch; }
+.cs-license-input-row .cs-edit-select { flex: 1; min-width: 0; font-family: var(--cs-font-mono); letter-spacing: 0.02em; }
+.cs-license-paste-btn { flex-shrink: 0; padding: 0.6rem 0.8rem; }
 
 .cs-share-list { display: flex; flex-direction: column; gap: 0.5rem; }
 .cs-share-item {

@@ -1127,7 +1127,11 @@ const ClipSafeApp = {
           <button class="cs-icon-btn cs-modal-close" data-act="close" title="${escapeAttr(this.t("ui.closeTooltip"))}">${ICONS.close}</button>
         </div>
         ${message ? `<p class="cs-modal-message">${escapeHtml(message)}</p>` : ""}
-        <input type="text" id="cs-license-input" class="cs-edit-select" placeholder="${escapeAttr(this.t("ui.licenseInputPlaceholder"))}" autocomplete="off" />
+        <div class="cs-license-input-row">
+          <input type="text" id="cs-license-input" class="cs-edit-select" placeholder="${escapeAttr(this.t("ui.licenseInputPlaceholder"))}"
+            autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+          <button class="cs-btn cs-btn--ghost cs-license-paste-btn" id="cs-license-paste-btn" type="button" title="${escapeAttr(this.t("ui.pasteBtn"))}">${ICONS.copy}</button>
+        </div>
         <p class="cs-modal-error" id="cs-license-error"></p>
         <div class="cs-modal-actions">
           <button class="cs-btn cs-btn--ghost" data-act="close">${escapeHtml(this.t("ui.licenseCancelBtn"))}</button>
@@ -1140,25 +1144,36 @@ const ClipSafeApp = {
     this.overlay.querySelector("#cs-license-input").addEventListener("keydown", (e) => {
       if (e.key === "Enter") this.validateLicenseKey();
     });
+    this.overlay.querySelector("#cs-license-paste-btn").addEventListener("click", async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        this.overlay.querySelector("#cs-license-input").value = text;
+      } catch {
+        this.toast(this.t("ui.clipboardDenied"));
+      }
+    });
   },
 
   async validateLicenseKey() {
     const input = this.overlay.querySelector("#cs-license-input");
     const errorEl = this.overlay.querySelector("#cs-license-error");
-    const value = input.value.trim();
-    if (!value) return;
-    const hash = await CryptoBox.sha256Hex(value);
+    // Les clés sont générées en MAJUSCULES sans espaces ; on normalise la
+    // saisie pour rester tolérant si la clé a été tapée à la main plutôt
+    // que collée (casse, espace parasite au milieu, etc.).
+    const normalized = input.value.replace(/\s+/g, "").toUpperCase();
+    if (!normalized) return;
+    const hash = await CryptoBox.sha256Hex(normalized);
     const keys = this.data.premium.licenseKeys || [];
     const match = keys.find((k) => k.hash === hash);
-    if (match) {
-      await PremiumLock.grant(match.hash, match.durationDays || 0);
-      this.toast(this.t("ui.licenseGranted"));
-      this.closeOverlay();
-      this.render();
-    } else {
+    if (!match) {
       errorEl.textContent = this.t("ui.licenseInvalid");
       input.value = "";
+      return;
     }
+    await PremiumLock.grant(match.hash, match.durationDays || 0);
+    this.toast(this.t("ui.licenseGranted"));
+    this.closeOverlay();
+    this.render();
   },
 
   /* ---- Pied de page ---- */
